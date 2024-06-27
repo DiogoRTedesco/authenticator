@@ -1,13 +1,14 @@
 ## authenticator
 
-#1. Requisitos Funcionais
+# 1. Requisitos Funcionais
   * Registro de Usuário: Permitir que novos usuários se registrem no sistema.
   * Autenticação: Autenticar usuários existentes.
   * Autorização: Determinar os sistemas que um usuário autenticado pode acessar.
   * Gerenciamento de Sessão: Manter sessões de usuário ativas e seguras.
   * Recuperação de Senha: Permitir a recuperação de senha para usuários que a esqueceram.
   * Log de Atividades: Registrar atividades de login e logout.
-#2. Estrutura de Dados
+    
+# 2. Estrutura de Dados
   * Usuário:
 
         ID
@@ -31,7 +32,7 @@
         Sistema permitido
         Nível de permissão
     
-#3. Endpoints da API
+# 3. Endpoints da API
   *  /register [POST]: Registro de novo usuário.
 
     Entrada: Nome de usuário, Email, Senha.
@@ -57,11 +58,11 @@
 
     Entrada: Token de recuperação, Nova senha.
     Saída: Confirmação de redefinição de senha.
-#4. Segurança
+# 4. Segurança
   * Criptografia de Senha: Usar hashing seguro .
   * Tokens de Autenticação: Usar JWT (JSON Web Tokens) ou sessões com tokens únicos.
   * Proteção contra Ataques: Implementar medidas como rate limiting, proteção contra CSRF (Cross-Site Request Forgery) e XSS (Cross-Site Scripting).
-#5. Fluxo de Operações
+# 5. Fluxo de Operações
   * Registro:
 
         Usuário envia dados de registro.
