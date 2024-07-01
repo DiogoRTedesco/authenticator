@@ -31,6 +31,18 @@
         ID do Usuário
         Sistema permitido
         Nível de permissão
+        Data de criação
+        Data de expiração
+        
+  
+  * Sitemas:
+
+       ID do Sistema
+       Nome do Sistema
+       URL do Sistema
+       Data de criação
+       
+
     
 # 3. Endpoints da API
   *  /register [POST]: Registro de novo usuário.
