@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateSystemDto } from './dto/create-system.dto';
+import { UpdateSystemDto } from './dto/update-system.dto';
 import { System } from './system.entity';
 
 @Injectable()
@@ -9,10 +10,13 @@ export class SystemsService {
   constructor(
     @InjectRepository(System)
     private readonly systemsRepository: Repository<System>,
-  ) {}
+  ) { }
 
   async create(createSystemDto: CreateSystemDto): Promise<System> {
-    const system = this.systemsRepository.create(createSystemDto);
+    const system = this.systemsRepository.create({
+      ...createSystemDto,
+      creation: new Date(),
+    });
     return this.systemsRepository.save(system);
   }
 
@@ -24,12 +28,14 @@ export class SystemsService {
     return this.systemsRepository.findOne({ where: { id } });
   }
 
-  async update(id: number, updateSystemDto: CreateSystemDto): Promise<System> {
-    await this.systemsRepository.update(id, updateSystemDto);
-    return this.findOne(id);
+  async update(id: number, updateSystemDto: UpdateSystemDto): Promise<System> {
+    const system = await this.findOne(id);
+    const updatedSystem = this.systemsRepository.merge(system, updateSystemDto);
+    return this.systemsRepository.save(updatedSystem);
   }
 
   async remove(id: number): Promise<void> {
-    await this.systemsRepository.delete(id);
+    const system = await this.findOne(id);
+    await this.systemsRepository.remove(system);
   }
 }

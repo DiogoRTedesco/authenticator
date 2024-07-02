@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { System } from '../system/system.entity';
 import { User } from '../user/user.entity';
 import { PermissionLevel } from './permission-level.enum';
@@ -17,9 +17,10 @@ export class Permission {
   @Column({ type: 'enum', enum: PermissionLevel })
   level: PermissionLevel;
 
-  @CreateDateColumn()
+  @Column()
   creation: Date;
 
-  @UpdateDateColumn()
-  updated: Date;
+  @Column()
+  expiration: Date;
 }
+

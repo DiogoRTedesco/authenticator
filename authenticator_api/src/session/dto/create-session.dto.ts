@@ -1,11 +1,14 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateSystemDto {
+export class CreateSessionDto {
   @IsNotEmpty()
   @IsString()
-  name: string;
+  userId: number;
 
   @IsNotEmpty()
   @IsString()
-  url: string;
+  token: string;
+
+  @IsNotEmpty()
+  expiration: Date;
 }
