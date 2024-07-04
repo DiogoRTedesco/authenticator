@@ -30,6 +30,7 @@ export class UsersService {
   async findByUser(username: string): Promise<User> {
     const user = await this.usersRepository.findOneBy({ username });
     console.log('Buscando usuário: ', username)
+  
     if (!user) {
       throw new NotFoundException(`User with username ${username} not found`);
     }

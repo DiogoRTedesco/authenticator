@@ -11,7 +11,7 @@ import { LocalStrategy } from './strategies/local.strategy';
 @Module({
   imports: [
     UsersModule, // Adicionando UsersModule nas importações
-    PassportModule,
+    PassportModule.register({ session: false }), // Desabilita o uso de sessões
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
