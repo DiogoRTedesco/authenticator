@@ -15,7 +15,7 @@ export class SessionsService {
     const session = this.sessionsRepository.create({
       ...createSessionDto,
       creation: new Date(),
-    });
+    }); //Alterar data de login do usuário (lastlogin)
     return this.sessionsRepository.save(session);
   }
 

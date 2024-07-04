@@ -27,6 +27,14 @@ export class UsersService {
     }
     return user;
   }
+  async findByUser(username: string): Promise<User> {
+    const user = await this.usersRepository.findOneBy({ username });
+    console.log('Buscando usuário: ', username)
+    if (!user) {
+      throw new NotFoundException(`User with username ${username} not found`);
+    }
+    return user;
+  }
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
     const updatedUser = this.usersRepository.merge(user, updateUserDto);

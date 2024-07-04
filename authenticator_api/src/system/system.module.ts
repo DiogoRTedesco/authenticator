@@ -1,7 +1,16 @@
 import { Module } from '@nestjs/common';
-import { SystemController } from './system.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { SystemsController } from './system.controller';
+import { System } from './system.entity';
+import { SystemsService } from './system.service';
 
 @Module({
-  controllers: [SystemController]
+  imports: [
+    TypeOrmModule.forFeature([System]),
+    SystemModule,
+  ],
+  providers: [SystemsService],
+  controllers: [SystemsController],
+  exports: [SystemsService],
 })
 export class SystemModule {}
